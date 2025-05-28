@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React + Tailwind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN -->
+    <!-- Figtree Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Figtree', sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .custom-card {
+        box-shadow: 0px 0px 30px 0px #D5D5D533 !important;
+        border-radius: 40px !important;
+      }
+
+      @media (max-width: 768px) {
+        .custom-card {
+          box-shadow: 0px 0px 21.01px 0px #D5D5D533 !important;
+          border-radius: 15px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+
+    <!-- React kodu -->
+    <script type="text/babel">
+      function App() {
+        const { motion } = window.Motion;
+        const [menuOpen, setMenuOpen] = React.useState(false);
+        
+        const scrollToSection = (id) => (e) => {
+          e.preventDefault();
+          const element = document.getElementById(id);
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          setMenuOpen(false); // Menüden tıklanınca kapansın
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        };
+        
+        return (
+          <div className="bg-[#FEFAF2] pt-6">
+            {/* Overlay Menü */}
+            {menuOpen && (
+              <div className="fixed inset-0 z-50 bg-[#FEFAF2] flex flex-col">
+                {/* Header tekrar */}
+                <div className="px-[24px] pt-16 pb-6">
+                  <div
+                    className="bg-white rounded-[100px] py-[13px] px-[20px] border-2 border-solid border-[#FFECC9] flex justify-between items-center"
+                    style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
+                  >
+                    <div className="flex items-center">
+                      <img
+                        src="../assets/images/onepage/logo.png"
+                        alt="logo"
+                        className="w-[104px] h-[21px]"
+                      />
+                    </div>
+                    <div className="block">
+                      <button type="button" onClick={() => setMenuOpen(false)}>
+                        <img src="../assets/images/onepage/hamburgerIcon.svg"/>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Menü itemları kutu içinde */}
+                <div className="flex-1 flex items-start justify-center">
+                  <div className="bg-white rounded-[15px] shadow-xl mx-[24px] w-full flex flex-col" style={{boxShadow: "-16px 9px 35px 0px #D6D6D633"}}>
+                    <a href="#hakkimizda" onClick={scrollToSection('hakkimizda')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
+                      Hakkımızda
+                    </a>
+                    <a href="#ozellikler" onClick={scrollToSection('ozellikler')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
+                      Özellikler
+                    </a>
+                    <a href="#bize-ulasin" onClick={scrollToSection('bize-ulasin')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] mb-[125px] font-medium">
+                      Bize Ulaşın
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* Normal Header */}
+            <div className="px-56 max-lg:px-[24px] pt-9 pb-6 max-lg:pb-0 sticky top-0 z-40">
+              <div
+                className="bg-white rounded-[100px] py-4 px-12 max-lg:py-[13px] max-lg:px-[20px] border-2 border-solid border-[#FFECC9] sticky top-0 z-40"
+                style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
+              >
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <img
+                      src="../assets/images/onepage/logo.png"
+                      alt="logo"
+                      className="w-[231px] h-[46px] max-lg:w-[104px] max-lg:h-[21px]"
+                    />
+                  </div>
+                  <div className="flex items-center gap-9 max-lg:hidden">
+                    <a href="#hakkimizda" onClick={scrollToSection('hakkimizda')} className="text-[#0C0B35] text-xl font-medium">
+                      Hakkımızda
+                    </a>
+                    <a href="#ozellikler" onClick={scrollToSection('ozellikler')} className="text-[#0C0B35] text-xl font-medium">
+                      Özellikler
+                    </a>
+                    <a href="#bize-ulasin" onClick={scrollToSection('bize-ulasin')} className="text-[#0C0B35] text-xl font-medium">
+                      Bize Ulaşın
+                    </a>
+                  </div>
+                  <div className="hidden max-lg:block pt-2">
+                    <button type="button" onClick={() => setMenuOpen(true)}>
+                      <img src="../assets/images/onepage/hamburgerIcon.svg"/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full px-56 max-lg:px-[24px] max-md:px-0 bg-[#FEFAF2] max-lg:mt-[24px] mt-14 pb-14 max-lg:pb-6 max-md:pb-2">
+              <span className="text-[#FF6634] text-4xl font-extrabold justify-center flex max-lg:text-[20px]">
+                Finans Yenilikle Buluşuyor!
+              </span>
+              <div className="mt-8 max-lg:mt-3 text-center max-lg:text-justify max-lg:text-xl max-lg:px-[24px]">
+                <span className="text-[#55555D] text-lg font-semibold max-lg:text-base">Finans kurumlarına özel, derin sektör analizi sonucu
+                geliştirdiğimiz CRM ürünümüz Traquent ile tanışın! </span>
+                <span className="text-[#55555D] text-lg font-regular max-lg:text-base">Traquent, kapsamlı veri analitiği ve özelleştirilmiş yönetim araçları ile müşteri yolculuğunu en verimli şekilde yönetmenize imkan sunar. Veriyi etkin şekilde kullanan, regülasyonlarla tam uyumlu çalışan ve yatırımcıların tüm etkileşimini tek noktada birleştiren ürünümüz, iş akışlarınızı dönüştürür. </span>
+              </div>
+            </div>
+            <div className=" h-[442px] max-lg:h-[185px] mx-auto bg-[#FEFAF2] flex relative">
+              <img
+                src="../assets/images/onepage/hero-image-background.png"
+                alt="background"
+                className="w-full h-full object-cover absolute top-0 left-0 z-0"
+              />
+              <img
+                src="../assets/images/onepage/hero-image.svg"
+                alt="image"
+                className="w-full h-full relative z-10 max-lg:px-[24px]"
+              />
+            </div>
+
+            <div className="flex flex-col bg-white max-lg:hidden">
+            <div className="flex flex-col mx-32 max-lg:mx-6 items-center" id="hakkimizda">
+                <div className="flex items-center justify-center gap-4 mt-20 max-lg:mt-14">
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+                  <span className="text-[#FF6634] font-medium text-lg max-lg:text-base">
+                    Hakkımızda
+                  </span>
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+                </div>
+
+                <span className="text-[#0C0B35] text-4xl mt-6 max-lg:mt-3 text-center font-extrabold mb-10 max-lg:mb-6 max-lg:text-xl">
+                  Entegre Güç, Sonsuz Olanak
+                </span>
+
+                {/* İlk satır - 2 kart */}
+                <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-6 w-full mb-6">
+                  {/* Kart 1 */}
+                  <div className="flex flex-col items-center justify-center bg-white custom-card">
+                    <img
+                      src="../assets/images/onepage/card1.png"
+                      alt="placeholder"
+                      className="py-8 px-20 max-lg:py-5 max-lg:px-10 "
+                    />
+                    <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                    <div className="flex flex-row items-center justify-center mt-8 mb-5 gap-5">
+                      <img
+                        src="../assets/images/onepage/card1Icon.png"
+                        alt="placeholder"
+                        className="w-[32px] h-[32px]"
+                      />
+                      <span className="text-[#FF6634] text-2xl text-center font-semibold max-lg:text-base">
+                        Finans Sektörüne Özel
+                      </span>
+                    </div>
+                      <span className="text-[#55555D] font-regular text-base mx-[30px] mb-8 max-lg:text-sm maxl-lg:mb-4 h-[104px] max-lg:h-[154px]">
+                      Traquent CRM, piyasa ihtiyaçları incelenerek, düzenleyici
+                      kurumların gereklilikleri göz önüne alınarak tasarlandı.
+                      İşlem platformlarıyla sorunsuz entegrasyon sağlayarak,
+                      müşteri ilişkilerini derinlemesine yönetebilir.
+                    </span>
+                  </div>
+
+                  {/* Kart 2 */}
+                  <div className="flex flex-col items-center justify-center bg-white custom-card">
+                    <img
+                      src="../assets/images/onepage/card2.png"
+                      alt="placeholder"
+                      className="py-8 px-20"
+                    />
+                    <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                    <div className="flex flex-row items-center justify-center mt-8 mb-5 gap-5">
+                      <img
+                        src="../assets/images/onepage/card2Icon.png"
+                        alt="placeholder"
+                        className="w-[32px] h-[32px]"
+                      />
+                      <span className="text-[#FF6634] text-2xl text-center font-semibold">
+                        Akıllı SLA Yönetimi
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] text-base mx-[30px] mb-8 h-[104px] max-lg:h-[154px]">
+                      Hizmet seviyeleri yönetimi ve otomatik uyarılar sayesinde,
+                      hizmetin gecikmesini önler, müşteri memnuniyetinin
+                      artırılmasını sağlar. Takımınız doğru adımları hemen
+                      atabilir, talepler hızla karşılanır. Destek kalitesinden
+                      memnuniyet sağlar.
+                    </span>
+                  </div>
+                </div>
+
+                {/* İkinci satır - 2 kart */}
+                <div className="grid max-lg:grid-cols-1  grid-cols-2 gap-6 w-full mb-10">
+                  {/* Kart 3 */}
+                  <div className="flex flex-col items-center justify-center bg-white custom-card">
+                    <img
+                      src="../assets/images/onepage/card3.png"
+                      alt="placeholder"
+                      className="py-8 px-20"
+                    />
+                    <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                    <div className="flex flex-row items-center justify-center mt-8 mb-5 gap-5">
+                      <img
+                        src="../assets/images/onepage/card3Icon.png"
+                        alt="placeholder"
+                        className="w-[22px] h-[22px]"
+                      />
+                      <span className="text-[#FF6634] text-2xl text-center font-semibold">
+                        Otomatik Etkileşim ve Bildirimler
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] text-base mx-[30px] mb-8 h-[104px] max-lg:h-[154px]">
+                      Tek tuşla arama, hazır mesaj şablonları ve otomatik
+                      e-posta bildirimleriyle tüm iletişim süreçlerini zahmetsiz
+                      hale getirir. Her kanaldan hızlı, tutarlı yanıtlar vererek
+                      sadakati güçlendirir.
+                    </span>
+                  </div>
+
+                  {/* Kart 4 */}
+                  <div className="flex flex-col items-center justify-center bg-white custom-card">
+                    <img
+                      src="../assets/images/onepage/image4.png"
+                      alt="placeholder"
+                      className="py-6 px-20"
+                    />
+                    <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                    <div className="flex flex-row items-center justify-center mt-8 mb-5 gap-5">
+                      <img
+                        src="../assets/images/onepage/card4Icon.png"
+                        alt="placeholder"
+                        className="w-[26px] h-[26px]"
+                      />
+                      <span className="text-[#FF6634] text-2xl text-center font-semibold">
+                        Gelişmiş Veri Analitiği
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] text-base mx-[30px] mb-8 h-[104px] max-lg:h-[154px]">
+                      Kullanıcı dostu dashboard'lar ve özelleştirilebilir
+                      raporlar sayesinde satış, destek ve işlem performansının
+                      gerçek zamanlı izlenmesini sağlar. Müşteri
+                      davranışlarından MT performansına kadar pek çok verinin
+                      tek ekrandan izlenip doğru karar alınmasını kolaylaştırır.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="bg-white flex flex-col items-center max-lg:hidden">
+            <div className="mx-32 flex flex-col items-center max-lg:mx-0" id="ozellikler">
+              <div className="flex items-center justify-center gap-4 mt-20 max-md:mt-10 ">
+                <div className="h-[2px] max-lg:h-[0.5px] bg-[#FF6634] w-2"></div>
+                <span className="text-[#FF6634] font-medium text-lg max-lg:text-xs">
+                  Özellikler
+                </span>
+                <div className="h-[2px] max-lg:h-[0.5px] bg-[#FF6634] w-2"></div>
+              </div>
+              <span className="text-[#0C0B35] text-4xl mt-6 max-lg:mt-3 max-lg:text-xl text-center font-extrabold mb-6">
+                Kesintisiz İletişim
+              </span>
+              <span className="text-[#55555D] text-lg text-center max-w-[996px] max-lg:max-w-full max-lg:text-base max-lg:text-justify font-regular max-lg:mx-6">
+                Traquent, finans sektörünün tüm CRM süreçlerini tek bir çatı
+                altında toplar ve yüksek ölçeklenebilir bir mimari üzerinde
+                çalışır. Potansiyel müşteri takibinden sözleşme yönetimine kadar
+                farklı modülleri aynı altyapıda entegre eder. Çoklu entegrasyon
+                özelliğiyle mevcut platformlar, e-posta servisleri ve üçüncü
+                parti uygulamalarla sorunsuz iletişim kurar. Kurumun iş
+                akışlarına hızlıca uyum sağlamak için özelleştirilebilir
+                fonksiyonlar sunar.
+              </span>
+
+              <div className="grid h-[1338px] max-lg:h-auto rounded-xl max-lg:flex max-lg:justify-center max-lg:grid-cols-1 md:grid-cols-2 gap-11 mt-12 w-full bg-[#FEFAF2] mb-20">
+                <div className="flex flex-col ml-24 my-24 max-lg:ml-6 max-lg:my-6 relative">
+                  {/* Mobilde arka plan görseli */}
+                  <div className="absolute w-screen h-full top-[300px] left-0 max-lg:block hidden z-0">
+                    <img src="../assets/images/onepage/group115.png" className="w-full h-auto" />
+                  </div>
+                  {/* Kartlar */}
+                  <div className="relative z-10">
+                    <div className="flex flex-col p-[30px] max-lg:p-2.5 bg-[#FFFCF7] border-[1px] max-lg:rounded-[15px] rounded-[40px] border-[#EFEFEF]" style={{boxShadow: "0px 0px 35px 0px #D5D5D51A"}}>
+                      <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Aperture.svg"
+                          alt="placeholder"
+                          className="w-[40px] h-[40px]"
+                        />
+                        <span className="text-[#FF6634] text-2xl text-center font-semibold max-lg:text-base">
+                          Esnek Mimari
+                        </span>
+                      </div>
+                      <span className="text-[#55555D] text-base mt-5 font-regular max-lg:text-sm max-lg:mt-2">
+                        Platformun modüler yapısı, ihtiyacınız olmayan bileşenleri
+                        devre dışı bırakmanıza veya yeni modüller eklemenize
+                        olanak tanır. Farklı büyüklükteki kurumlar için
+                        ölçeklenebilirlik sunar ve Potansiyel Müşteri Yönetimi ile
+                        Kampanya Yönetimi gibi kritik modülleri entegre şekilde
+                        kullanarak verimliliği artırır.
+                      </span>
+                    </div>
+                    <div className="flex flex-col p-[30px] max-lg:p-2.5 bg-[#FFFCF7] border-[1px] max-lg:rounded-[15px] rounded-[40px] border-[#EFEFEF] mt-9" style={{boxShadow: "0px 0px 35px 0px #D5D5D51A"}}>
+                      <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/GitBranch.svg"
+                          alt="placeholder"
+                          className="w-[40px] h-[40px]"
+                        />
+                          <span className="text-[#FF6634] text-2xl text-center font-semibold max-lg:text-base">
+                          Çoklu Entegrasyon
+                        </span>
+                      </div>
+                      <span className="text-[#55555D] text-base mt-5 font-regular max-lg:text-sm max-lg:mt-2">
+                        Traquent, ERP, backoffice, veri sağlayıcıları, e-posta ve çağrı merkezi altyapılarıyla çift yönlü veri akışı sağlar, tüm departmanların tek ekrandan çalışmasını mümkün kılar. API entegrasyonu ile müşteri verilerinin hızlıca aktarılmasını sağlar. 
+                      </span>
+                    </div>
+                    <div className="flex flex-col p-[30px] max-lg:p-2.5 bg-[#FFFCF7] border-[1px] max-lg:rounded-[15px] rounded-[40px] border-[#EFEFEF] mt-9" style={{boxShadow: "0px 0px 35px 0px #D5D5D51A"}}>
+                      <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Gear.svg"
+                          alt="placeholder"
+                          className="w-[40px] h-[40px]"
+                        />
+                        <span className="text-[#FF6634] text-2xl text-center font-semibold max-lg:text-base">
+                          Otomatik Süreç Tanımları
+                        </span>
+                      </div>
+                      <span className="text-[#55555D] text-base mt-5 font-regular max-lg:text-sm max-lg:mt-2">
+                        İş kuralları ve otomatik bildirimler kurumunuz için kolayca özelleştirilebilir. Sürükle-bırak yöntemiyle, örneğin özel onay akışları veya otomatik sözleşme gönderimi gibi fonksiyonlar hızla yapılandırılabilir. Bu esneklik, düzenleyici kurumların değişikliklerine hızlı yanıt verilmesini sağlar. 
+                      </span>
+                    </div>
+                    <div className="flex flex-col p-[30px] max-lg:p-2.5 bg-[#FFFCF7] border-[1px] max-lg:rounded-[15px] rounded-[40px] border-[#EFEFEF] mt-9" style={{boxShadow: "0px 0px 35px 0px #D5D5D51A"}}>
+                      <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Handshake.svg"
+                          alt="placeholder"
+                          className="w-[40px] h-[40px]"
+                        />
+                        <span className="text-[#FF6634] text-2xl text-center font-semibold max-lg:text-base">
+                          Her Kuruma Özel Çözüm
+                        </span>
+                      </div>
+                      <span className="text-[#55555D] text-base mt-5 font-regular max-lg:text-sm max-lg:mt-2">
+                        Finans sektörünün ihtiyaçlarına uygun olarak kurgulanan Traquent, kurumların özel ihtiyaç ve beklentilerine de kolayca uyumlanabilir. Düzenleyici kurum taleplerine hızlı cevap verirken kurum kültürüne uygun bir dijital altyapı oluşturur.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-[1338px]">
+                  <div className="bg-transparent flex flex-col max-lg:hidden">
+                  <img
+                    src="../assets/images/onepage/pattern.png"
+                    alt="placeholder"
+                    className="w-[343px] h-[406px] relative top-36 left-12"
+                  />
+                  <img
+                    src="../assets/images/onepage/pattern.png"
+                    alt="placeholder"
+                    className="w-[343px] h-[406px] relative top-72 left-48"
+                  />
+                  <img
+                    src="../assets/images/onepage/features-image.png"
+                    alt="placeholder"
+                    className="relative z-10 mx-auto left-[100px] block bottom-[600px]"
+                  />
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            
+            <div className="bg-white max-lg:hidden">
+              <div
+                className="flex flex-col items-center mx-32" id="bize-ulasin"
+                style={{
+                  backgroundImage:
+                    "url('../assets/images/onepage/cta-pattern.png')",
+                  backgroundSize: "cover",
+                  height:'653px',
+                  backgroundRepeat: "no-repeat",
+                  borderTopLeftRadius: "30px",
+                  borderTopRightRadius: "30px",
+                  backgroundColor: "#FAFAFA",
+                }}
+              >
+                <div className="flex items-center justify-center gap-4 mt-6 max-md:mt-2 ">
+                  <div className="h-[2px] bg-[#FF6634] w-2"></div>
+                  <span className="text-[#FF6634] font-medium text-lg max-lg:text-xs">
+                    Bize Ulaşın
+                  </span>
+                  <div className="h-[2px] bg-[#FF6634] w-2"></div>
+                </div>
+                <span className="text-[#0C0B35] text-4xl mt-6 max-md:mt-2 font-extrabold text-center mb-6 max-lg:text-xl">
+                  Gücünüzü Dijitalle Buluşturun!
+                </span>
+                <span className="text-[#0C0B35] text-lg max-w-[792px] text-center font-regular max-lg:text-base">
+                  Traquent CRM ile müşteri odaklı, modüler ve kullanıcı dostu
+                  çözümleri hemen keşfedin. Dijitalleşmenin merkezine
+                  müşterilerinizi alın ve ekibinizin potansiyelini ortaya
+                  çıkarın.
+                </span>
+                <div className="cursor-pointer bg-[#0C0B35] text-white text-base py-3 px-12 rounded-xl mt-6 font-medium">
+                  <a href="../contact.html">Bize Ulaşın</a>  
+                </div>
+              </div>
+              <img
+                src="../assets/images/onepage/cta-image.png"ß
+                alt="placeholder"
+                className="relative mx-auto block mt-[-340px] max-lg:mt-[-60px] z-10 w-[725px] h-[252px]"
+              />
+            </div>
+
+
+            <div className="flex flex-col bg-white hidden items-center justify-center max-lg:block pt-[56px] px-[24px]">
+              <div className="flex items-center justify-center gap-4">
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+                  <span className="text-[#FF6634] font-medium text-[12px]">
+                    Hakkımızda
+                  </span>
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+              </div>
+              <span className="text-[#0C0B35] font-extrabold text-[20px] flex justify-center mt-[12px]">
+                Entegre Güç, Sonsuz Olanak
+              </span>
+              <div className="flex flex-col w-full h-auto mt-[24px] rounded-[15px] bg-white" style={{boxShadow: "0px 0px 21.01px 0px #D5D5D533"}}>
+                <img
+                      src="../assets/images/onepage/responsiveFinans.svg"
+                      alt="placeholder"
+                      className="py-[20px] px-[39px]"
+                    />
+                <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                <div className="flex flex-row items-center justify-center mt-[18px]">
+                      <img
+                        src="../assets/images/onepage/card1Icon.png"
+                        alt="placeholder"
+                        className="w-[19px] h-[19px] mr-[12px]"
+                      />
+                      <span className="text-[#FF6634] text-[16px] font-semibold">
+                        Finans Sektörüne Özel
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] font-regular text-[14px] mx-[18px] mb-[18px] mt-[12px]">
+                      Traquent CRM, piyasa ihtiyaçları incelenerek, düzenleyici
+                      kurumların gereklilikleri göz önüne alınarak tasarlandı.
+                      İşlem platformlarıyla sorunsuz entegrasyon sağlayarak,
+                      müşteri ilişkilerini derinlemesine yönetebilir.
+                    </span>
+              </div>
+              <div className="flex flex-col w-full h-auto mt-[24px] rounded-[15px] bg-white" style={{boxShadow: "0px 0px 21.01px 0px #D5D5D533"}}>
+                <img
+                      src="../assets/images/onepage/responsiveFinans.svg"
+                      alt="placeholder"
+                      className="py-[20px] px-[39px]"
+                    />
+                <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                <div className="flex flex-row items-center justify-center mt-[18px]">
+                      <img
+                        src="../assets/images/onepage/card2Icon.png"
+                        alt="placeholder"
+                        className="w-[19px] h-[19px] mr-[12px]"
+                      />
+                      <span className="text-[#FF6634] text-[16px] font-semibold">
+                        Akıllı SLA Yönetimi
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] font-regular text-[14px] mx-[18px] mb-[18px] mt-[12px]">
+                      Hizmet seviyeleri yönetimi ve otomatik uyarılar sayesinde, hizmetin gecikmesini önler, müşteri memnuniyetinin artırılmasını sağlar. Takımınız doğru adımları hemen atabilir, talepler hızla karşılanır. Destek kalitesinden memnuniyet sağlar.
+                    </span>
+              </div>
+              <div className="flex flex-col w-full h-auto mt-[24px] rounded-[15px] bg-white" style={{boxShadow: "0px 0px 21.01px 0px #D5D5D533"}}>
+                <img
+                      src="../assets/images/onepage/responsiveFinans.svg"
+                      alt="placeholder"
+                      className="py-[20px] px-[39px]"
+                    />
+                <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                <div className="flex flex-row items-center justify-center mt-[18px]">
+                      <img
+                        src="../assets/images/onepage/card3Icon.png"
+                        alt="placeholder"
+                        className="w-[19px] h-[19px] mr-[12px]"
+                      />
+                      <span className="text-[#FF6634] text-[16px] font-semibold">
+                        Otomatik Etkileşim ve Bildirimler
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] font-regular text-[14px] mx-[18px] mb-[18px] mt-[12px]">
+                      Tek tuşla arama, hazır mesaj şablonları ve otomatik e-posta bildirimleriyle tüm iletişim süreçlerini zahmetsiz hale getirir. Her kanaldan hızlı, tutarlı yanıtlar vererek sadakati güçlendirir.
+                    </span>
+              </div>
+              <div className="flex flex-col w-full h-auto mt-[24px] rounded-[15px] bg-white" style={{boxShadow: "0px 0px 21.01px 0px #D5D5D533"}}>
+                <img
+                      src="../assets/images/onepage/responsiveFinans.svg"
+                      alt="placeholder"
+                      className="py-[20px] px-[39px]"
+                    />
+                <div className="border-[1px] border-solid border-[#EFEFEF] w-full h-px"></div>
+                <div className="flex flex-row items-center justify-center mt-[18px]">
+                      <img
+                        src="../assets/images/onepage/card4Icon.png"
+                        alt="placeholder"
+                        className="w-[19px] h-[19px] mr-[12px]"
+                      />
+                      <span className="text-[#FF6634] text-[16px] font-semibold">
+                        Gelişmiş Veri Analitiği
+                      </span>
+                    </div>
+                    <span className="text-[#55555D] font-regular text-[14px] mx-[18px] mb-[18px] mt-[12px]">
+                      Kullanıcı dostu dashboard'lar ve özelleştirilebilir raporlar sayesinde satış, destek ve işlem performansının gerçek zamanlı izlenmesini sağlar. Müşteri davranışlarından MT performansına kadar pek çok verinin tek ekrandan izlenip doğru karar alınmasını kolaylaştırır. 
+                    </span>
+              </div>
+              </div>
+            
+            
+            <div className="flex flex-col items-center justify-center hidden bg-white max-lg:block pt-[56px] px-[24px]">
+              <div className="flex items-center justify-center gap-4">
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+                  <span className="text-[#FF6634] font-medium text-[12px]">
+                    Özellikler
+                  </span>
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+              </div>
+              <span className="text-[#0C0B35] font-extrabold text-[20px] flex justify-center mt-[12px]">
+                Kesintisiz İletişim
+              </span>
+              <span className="text-[#55555D] font-regular text-justify text-[16px] flex justify-center mt-[12px] pb-[24px]">
+                Traquent, finans sektörünün tüm CRM süreçlerini tek bir çatı altında toplar ve yüksek ölçeklenebilir bir mimari üzerinde çalışır. Potansiyel müşteri takibinden sözleşme yönetimine kadar farklı modülleri aynı altyapıda entegre eder. Çoklu entegrasyon özelliğiyle mevcut platformlar, e-posta servisleri ve üçüncü parti uygulamalarla sorunsuz iletişim kurar. Kurumun iş akışlarına hızlıca uyum sağlamak için özelleştirilebilir fonksiyonlar sunar.
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center hidden bg-[#FEFAF2] h-[1091px] max-lg:block rounded-[15px]">
+              <div className="flex flex-col mt-[24px] mx-[24px] bg-[#FFFCF7] rounded-[15px] p-[10px]" style={{border: "0.37px solid #0C183D1A",boxShadow: "0px 0px 12.84px 0px #D5D5D51A;"}}>
+                <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Aperture.svg"
+                          alt="placeholder"
+                          className="w-[20px] h-[20px]"
+                        />
+                        <span className="text-[#FF6634] text-[16px] text-center font-semibold">
+                          Esnek Mimari
+                        </span>
+                </div>
+                <span className="font-regular text-[14px] text-[#55555D] mt-[7px]">Platformun modüler yapısı, ihtiyacınız olmayan bileşenleri devre dışı bırakmanıza veya yeni modüller eklemenize olanak tanır. Farklı büyüklükteki kurumlar için ölçeklenebilirlik sunar ve Potansiyel Müşteri Yönetimi ile Kampanya Yönetimi gibi kritik modülleri entegre şekilde kullanarak verimliliği artırır.</span>
+              </div>
+              <div className="flex flex-col mt-[24px] mx-[24px] bg-[#FFFCF7] rounded-[15px] p-[10px]" style={{border: "0.37px solid #0C183D1A",boxShadow: "0px 0px 12.84px 0px #D5D5D51A;"}}>
+                <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/GitBranch.svg"
+                          alt="placeholder"
+                          className="w-[20px] h-[20px]"
+                        />
+                        <span className="text-[#FF6634] text-[16px] text-center font-semibold">
+                          Çoklu Entegrasyon
+                        </span>
+                </div>
+                <span className="font-regular text-[14px] text-[#55555D] mt-[7px]">Traquent, ERP, backoffice, veri sağlayıcıları, e-posta ve çağrı merkezi altyapılarıyla çift yönlü veri akışı sağlar, tüm departmanların tek ekrandan çalışmasını mümkün kılar. API entegrasyonu ile müşteri verilerinin hızlıca aktarılmasını sağlar.</span>
+              </div>
+              <div className="flex flex-col mt-[24px] mx-[24px] bg-[#FFFCF7] rounded-[15px] p-[10px]" style={{border: "0.37px solid #0C183D1A",boxShadow: "0px 0px 12.84px 0px #D5D5D51A;"}}>
+                <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Gear.svg"
+                          alt="placeholder"
+                          className="w-[20px] h-[20px]"
+                        />
+                        <span className="text-[#FF6634] text-[16px] text-center font-semibold">
+                          Otomatik Süreç Tanımları
+                        </span>
+                </div>
+                <span className="font-regular text-[14px] text-[#55555D] mt-[7px]">İş kuralları ve otomatik bildirimler kurumunuz için kolayca özelleştirilebilir. Sürükle-bırak yöntemiyle, örneğin özel onay akışları veya otomatik sözleşme gönderimi gibi fonksiyonlar hızla yapılandırılabilir. Bu esneklik, düzenleyici kurumların değişikliklerine hızlı yanıt verilmesini sağlar.</span>
+              </div>
+              <div className="flex flex-col mt-[24px] mx-[24px] bg-[#FFFCF7] rounded-[15px] p-[10px] relative z-10" style={{border: "0.37px solid #0C183D1A",boxShadow: "0px 0px 12.84px 0px #D5D5D51A;"}}>
+                <div className="flex flex-row items-center justify-start gap-4">
+                        <img
+                          src="../assets/images/onepage/Handshake.svg"
+                          alt="placeholder"
+                          className="w-[20px] h-[20px]"
+                        />
+                        <span className="text-[#FF6634] text-[16px] text-center font-semibold">
+                          Her Kuruma Özel Çözüm
+                        </span>
+                </div>
+                <span className="font-regular text-[14px] text-[#55555D] mt-[7px]">Finans sektörünün ihtiyaçlarına uygun olarak kurgulanan Traquent, kurumların özel ihtiyaç ve beklentilerine de kolayca uyumlanabilir. Düzenleyici kurum taleplerine hızlı cevap verirken kurum kültürüne uygun bir dijital altyapı oluşturur.</span>
+              </div>
+              <img src="../assets/images/onepage/responsiveFrame.png" className="relative w-full bottom-[80px] z-0"/>
+            </div>
+            <div className="bg-white h-[56px] w-full hidden max-lg:block"></div>
+            <div className="hidden max-lg:block bg-[#FAFAFA] rounded-[15px]" style={{backgroundImage: "url('../assets/images/onepage/ctaResponsiveBackground.svg')", backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
+              <div className="flex items-center justify-center gap-4 pt-[12px]">
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+                  <span className="text-[#FF6634] font-medium text-[12px]">
+                    Bize Ulaşın
+                  </span>
+                  <div className="h-[2px] bg-orange-500 w-2"></div>
+              </div>
+              <span className="text-[#0C0B35] font-extrabold text-[20px] flex justify-center mt-[12px]">
+                Gücünüzü Dijitalle Buluşturun!
+              </span>
+              <span className="text-[#0C0B35] font-regular text-[16px] flex justify-center text-center mt-[12px] px-[48px]">
+                Traquent CRM ile müşteri odaklı, modüler ve kullanıcı dostu çözümleri hemen keşfedin. Dijitalleşmenin merkezine müşterilerinizi alın ve ekibinizin potansiyelini ortaya çıkarın.
+              </span>
+              <div className="flex items-center justify-center mt-[24px]">
+              <a href="../contact.html" className="cursor-pointer bg-[#0C0B35] text-white w-[167px] h-[48px] font-medium text-[16px] flex items-center justify-center rounded-[8px]">
+                Bize Ulaşın
+              </a>
+              </div>
+              <div className="flex items-center justify-center mt-[24px]">
+              <img src="../assets/images/onepage/ctaResponsive2.svg" className="w-full"/>
+              </div>
+            </div>
+            <div
+              className="bg-white py-12 border-t border-gray-200 relative z-20"
+              style={{
+                backgroundImage:
+                  "url('../assets/images/onepage/footerBackground.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="container mx-auto max-lg:px-4">
+                <div className="flex flex-col md:flex-row justify-between items-start mb-8">
+                  {/* Logo and company name section */}
+                  <div className="flex flex-col mb-8 md:mb-0">
+                    <div className="flex items-center mb-4">
+                      <img
+                        src="../assets/images/onepage/traquent.svg"
+                        alt="Traquent Logo"
+                        className="w-[131px] h-[26px]"
+                      />
+                    </div>
+                    <div className="mt-6">
+                      <img
+                        src="../assets/images/onepage/footerKarya.svg"
+                        alt="KARYA Logo"
+                        className="my-2 w-[91px] h-[34px]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Contact information section */}
+                  <div className="flex flex-col">
+                    <div className="flex items-center mb-4">
+                      <div className="mr-3 text-orange-500">
+                        <img src="../assets/images/onepage/PhoneCall.svg" alt="phone" className="w-auto h-auto" />
+                      </div>
+                      <span className="text-[#0C0B35] font-light text-base">0212 931 90 43</span>
+                    </div>
+
+                    <div className="flex items-center mb-4">
+                      <div className="mr-3 text-orange-500">
+                        <img src="../assets/images/onepage/GlobeSimple.svg" alt="globe" className="w-auto h-auto" />
+                      </div>
+                      <span className="text-[#0C0B35] font-light text-base">
+                        www.karyabilisim.com
+                      </span>
+                    </div>
+
+                    <div className="flex items-center mb-4">
+                      <div className="mr-3 text-orange-500">
+                        <img src="../assets/images/onepage/EnvelopeSimple.svg" alt="envelope" className="w-auto h-auto" />
+                      </div>
+                      <span className="text-[#0C0B35] font-light text-base">
+                        info@karyabilisim.com
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Copyright */}
+                <div className="text-center pt-4 ">
+                  <p className="text-sm text-gray-500">
+                    Copyright 2025 Karya Bilişim tarafından geliştirilmiştir.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

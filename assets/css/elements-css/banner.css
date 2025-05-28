@@ -1,0 +1,121 @@
+
+/** banner-section **/
+
+.banner-section{
+  position: relative;
+  overflow: hidden;
+}
+  
+.banner-carousel .slide-item{
+  position: relative;
+  padding: 166px 0px;
+}
+  
+.banner-carousel .content-box{
+  position: relative;
+  max-width: 805px;
+  width: 100%;
+  z-index: 5;
+}
+  
+.banner-carousel .content-box .content-inner {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(7.5px);
+  border-radius: 20px;
+  padding: 56px 56px 56px 56px;
+  transform: none; /* Animasyon kaldırıldı */
+  transition: none; /* Geçiş animasyonu kaldırıldı */
+}
+
+@media (max-width: 768px) {
+  .banner-carousel .content-box .content-inner {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    padding: 20px 25px 25px 25px !important;
+    
+    /* Yedek çözüm */
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px); /* Safari için */
+  }
+}
+
+
+/* .banner-carousel .active .content-inner{
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition-delay: 0ms;
+  -moz-transition-delay: 0ms;
+  -ms-transition-delay: 0ms;
+  -o-transition-delay: 0ms;
+  transition-delay: 0ms;
+} */
+  
+.banner-carousel .slide-item:before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #000;
+  top: 0px;
+  right: 0px;
+  opacity: 0;
+  z-index: 1;
+}
+  
+.banner-carousel .slide-item .image-layer{
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+  
+.banner-carousel .active .slide-item .image-layer{
+  -webkit-transform:scale(1);
+  -ms-transform:scale(1);
+  transform:scale(1);
+}
+  
+.banner-carousel .content-box h2{
+  font-size: 56px;
+  line-height: 74px;
+  font-weight: 600;
+  color: #fff;
+}
+  
+.banner-carousel .content-box p{
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
+}
+
+
+
+
+/** banner-style-two **/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
