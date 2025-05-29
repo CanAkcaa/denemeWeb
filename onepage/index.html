@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>React + Tailwind</title>
+    <title>Traquent</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="../assets/images/onepage/traquent-favicon.svg">
     <!-- Tailwind CDN -->
     <!-- Figtree Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,76 +64,76 @@
           <div className="bg-[#FEFAF2] pt-6">
             {/* Overlay Menü */}
             {menuOpen && (
-              <div className="fixed inset-0 z-50 bg-[#FEFAF2] flex flex-col">
-                {/* Header tekrar */}
-                <div className="px-[24px] pt-16 pb-6">
-                  <div
-                    className="bg-white rounded-[100px] py-[13px] px-[20px] border-2 border-solid border-[#FFECC9] flex justify-between items-center"
-                    style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
-                  >
-                    <div className="flex items-center">
-                      <img
-                        src="../assets/images/onepage/logo.png"
-                        alt="logo"
-                        className="w-[104px] h-[21px]"
-                      />
-                    </div>
-                    <div className="block">
-                      <button type="button" onClick={() => setMenuOpen(false)}>
-                        <img src="../assets/images/onepage/hamburgerIcon.svg"/>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {/* Menü itemları kutu içinde */}
-                <div className="flex-1 flex items-start justify-center">
-                  <div className="bg-white rounded-[15px] shadow-xl mx-[24px] w-full flex flex-col" style={{boxShadow: "-16px 9px 35px 0px #D6D6D633"}}>
-                    <a href="#hakkimizda" onClick={scrollToSection('hakkimizda')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
-                      Hakkımızda
-                    </a>
-                    <a href="#ozellikler" onClick={scrollToSection('ozellikler')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
-                      Özellikler
-                    </a>
-                    <a href="#bize-ulasin" onClick={scrollToSection('bize-ulasin')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] mb-[125px] font-medium">
-                      Bize Ulaşın
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
-            {/* Normal Header */}
-            <div className="px-56 max-lg:px-[24px] pt-9 pb-6 max-lg:pb-0 sticky top-0 z-40">
-              <div
-                className="bg-white rounded-[100px] py-4 px-12 max-lg:py-[13px] max-lg:px-[20px] border-2 border-solid border-[#FFECC9] sticky top-0 z-40"
-                style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
-              >
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="../assets/images/onepage/logo.png"
-                      alt="logo"
-                      className="w-[231px] h-[46px] max-lg:w-[104px] max-lg:h-[21px]"
-                    />
-                  </div>
-                  <div className="flex items-center gap-9 max-lg:hidden">
-                    <a href="#hakkimizda" onClick={scrollToSection('hakkimizda')} className="text-[#0C0B35] text-xl font-medium">
-                      Hakkımızda
-                    </a>
-                    <a href="#ozellikler" onClick={scrollToSection('ozellikler')} className="text-[#0C0B35] text-xl font-medium">
-                      Özellikler
-                    </a>
-                    <a href="#bize-ulasin" onClick={scrollToSection('bize-ulasin')} className="text-[#0C0B35] text-xl font-medium">
-                      Bize Ulaşın
-                    </a>
-                  </div>
-                  <div className="hidden max-lg:block pt-2">
-                    <button type="button" onClick={() => setMenuOpen(true)}>
-                      <img src="../assets/images/onepage/hamburgerIcon.svg"/>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="fixed inset-0 z-50 bg-[#FEFAF2] flex flex-col">
+    {/* Header - Mobil menü açık durumu */}
+    <div className="px-[24px] pt-[60px] pb-6 sticky top-0 z-40">
+      <div
+        className="bg-white rounded-[100px] py-4 px-12 max-lg:py-[13px] max-lg:px-[20px] border-[1px] border-solid border-[#FFECC9] flex justify-between items-center"
+        style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
+      >
+        <div className="flex items-center">
+          <img
+            src="../assets/images/onepage/logo.png"
+            alt="logo"
+            className="w-[231px] h-[46px] max-lg:w-[104px] max-lg:h-[21px]"
+          />
+        </div>
+        <div className="block max-lg:block pt-2 max-lg:pt-2">
+          <button type="button" onClick={() => setMenuOpen(false)}>
+            <img src="../assets/images/onepage/hamburgerIcon.svg"/>
+          </button>
+        </div>
+      </div>
+    </div>
+    {/* Menü itemları kutu içinde */}
+    <div className="flex-1 flex items-start justify-center">
+      <div className="bg-white rounded-[15px] shadow-xl mx-[24px] w-full flex flex-col" style={{boxShadow: "-16px 9px 35px 0px #D6D6D633"}}>
+        <a href="#hakkimizda2" onClick={scrollToSection('hakkimizda2')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
+          Hakkımızda
+        </a>
+        <a href="#ozellikler2" onClick={scrollToSection('ozellikler2')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] font-medium">
+          Özellikler
+        </a>
+        <a href="#bize-ulasin2" onClick={scrollToSection('bize-ulasin2')} className="text-[#181C32] text-[16px] px-[30px] mt-[30px] mb-[125px] font-medium">
+          Bize Ulaşın
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+{/* Normal Header */}
+<div className="px-56 max-lg:px-[24px] pt-9 pb-6 max-lg:pb-0 sticky top-0 z-40">
+  <div
+    className="bg-white rounded-[100px] py-4 px-12 max-lg:py-[13px] max-lg:px-[20px] border-[1px] border-solid border-[#FFECC9] sticky top-0 z-40"
+    style={{ boxShadow: "-16px 9px 35px 0px #D6D6D633" }}
+  >
+    <div className="flex justify-between items-center">
+      <div className="flex items-center">
+        <img
+          src="../assets/images/onepage/logo.png"
+          alt="logo"
+          className="w-[231px] h-[46px] max-lg:w-[104px] max-lg:h-[21px]"
+        />
+      </div>
+      <div className="flex items-center gap-9 max-lg:hidden">
+        <a href="#hakkimizda" onClick={scrollToSection('hakkimizda')} className="text-[#0C0B35] text-xl font-medium">
+          Hakkımızda
+        </a>
+        <a href="#ozellikler" onClick={scrollToSection('ozellikler')} className="text-[#0C0B35] text-xl font-medium">
+          Özellikler
+        </a>
+        <a href="#bize-ulasin" onClick={scrollToSection('bize-ulasin')} className="text-[#0C0B35] text-xl font-medium">
+          Bize Ulaşın
+        </a>
+      </div>
+      <div className="hidden max-lg:block pt-2">
+        <button type="button" onClick={() => setMenuOpen(true)}>
+          <img src="../assets/images/onepage/hamburgerIcon.svg"/>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
             <div className="w-full px-56 max-lg:px-[24px] max-md:px-0 bg-[#FEFAF2] max-lg:mt-[24px] mt-14 pb-14 max-lg:pb-6 max-md:pb-2">
               <span className="text-[#FF6634] text-4xl font-extrabold justify-center flex max-lg:text-[20px]">
@@ -156,7 +157,7 @@
                 className="w-full h-full relative z-10 max-lg:px-[24px] max-lg:hidden"
               />
                             <img
-                src="../assets/images/onepage/hero-image-4.png"
+                src="../assets/images/onepage/hero-image4.png"
                 alt="image"
                 className="w-full h-full relative z-10 max-lg:px-[24px] hidden max-lg:block"
               />
@@ -444,7 +445,7 @@
                   çıkarın.
                 </span>
                 <div className="cursor-pointer bg-[#0C0B35] text-white text-base py-3 px-12 rounded-xl mt-6 font-medium">
-                  <a href="../contact.html">Bize Ulaşın</a>  
+                  <a href="https://karyabilisim.com/contact.html" target="_blank">Bize Ulaşın</a>  
                 </div>
               </div>
               <img
@@ -455,7 +456,7 @@
             </div>
 
 
-            <div className="flex flex-col bg-white hidden items-center justify-center max-lg:block pt-[56px] px-[24px]">
+            <div className="flex flex-col bg-white hidden items-center justify-center max-lg:block pt-[56px] px-[24px]" id="hakkimizda2">
               <div className="flex items-center justify-center gap-4">
                   <div className="h-[2px] bg-orange-500 w-2"></div>
                   <span className="text-[#FF6634] font-medium text-[12px]">
@@ -572,7 +573,7 @@
               </span>
             </div>
 
-            <div className="flex flex-col items-center justify-center hidden bg-[#FEFAF2] h-[1091px] max-lg:block rounded-[15px]">
+            <div className="flex flex-col items-center justify-center hidden bg-[#FEFAF2] h-[1091px] max-lg:block rounded-[15px]"  id="ozellikler2">
               <div className="flex flex-col mt-[24px] mx-[24px] bg-[#FFFCF7] rounded-[15px] p-[10px]" style={{border: "0.37px solid #0C183D1A",boxShadow: "0px 0px 12.84px 0px #D5D5D51A;"}}>
                 <div className="flex flex-row items-center justify-start gap-4">
                         <img
@@ -628,7 +629,7 @@
               <img src="../assets/images/onepage/responsiveFrame.png" className="relative w-full bottom-[80px] z-0"/>
             </div>
             <div className="bg-white h-[56px] w-full hidden max-lg:block"></div>
-            <div className="hidden max-lg:block bg-[#FAFAFA] rounded-[15px]" style={{backgroundImage: "url('../assets/images/onepage/ctaResponsiveBackground.svg')", backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
+            <div className="hidden max-lg:block bg-[#FAFAFA] rounded-[15px]"  id="bize-ulasin2" style={{backgroundImage: "url('../assets/images/onepage/ctaResponsiveBackground.svg')", backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
               <div className="flex items-center justify-center gap-4 pt-[12px]">
                   <div className="h-[2px] bg-orange-500 w-2"></div>
                   <span className="text-[#FF6634] font-medium text-[12px]">
@@ -643,7 +644,7 @@
                 Traquent CRM ile müşteri odaklı, modüler ve kullanıcı dostu çözümleri hemen keşfedin. Dijitalleşmenin merkezine müşterilerinizi alın ve ekibinizin potansiyelini ortaya çıkarın.
               </span>
               <div className="flex items-center justify-center mt-[24px]">
-              <a href="../contact.html" className="cursor-pointer bg-[#0C0B35] text-white w-[167px] h-[48px] font-medium text-[16px] flex items-center justify-center rounded-[8px]">
+              <a href="https://karyabilisim.com/contact.html" target="_blank" className="cursor-pointer bg-[#0C0B35] text-white w-[167px] h-[48px] font-medium text-[16px] flex items-center justify-center rounded-[8px]">
                 Bize Ulaşın
               </a>
               </div>
